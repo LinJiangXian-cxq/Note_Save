@@ -1,0 +1,10 @@
+GET /47/list.htm HTTP/1.1
+Accept: text/html, application/xhtml+xml, */*
+Referer: http://www2.swust.edu.cn/
+Accept-Language: zh-CN
+User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)
+Accept-Encoding: gzip, deflate
+Host: www2.swust.edu.cn
+Connection: Keep-Alive
+Cookie: JSESSIONID=3BB7666430B7E1432386301431426743
+

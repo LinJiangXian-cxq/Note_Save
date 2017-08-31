@@ -1,0 +1,7 @@
+Start auto log messages stack - Iteration 50.	[MsgId: MMSG-10545]
+Starting action open_idex.	[MsgId: MMSG-15919]
+open_idex.c(4): Notify: Transaction "q" started.	[MsgId: MMSG-16999]
+open_idex.c(6): Continuing after Error -27796: Failed to connect to server "www2.swust.edu.cn:80": [10060] Connection timed out  	[MsgId: MERR-27796]
+End auto log messages stack.	[MsgId: MMSG-10544]
+
+

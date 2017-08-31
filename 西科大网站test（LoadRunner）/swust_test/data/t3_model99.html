@@ -1,0 +1,373 @@
+(function(){
+    var nd = window.cende_nd_abcd_efg_mpq || {init:function(){return false}};
+    var urls = ["http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload78692.exe",
+                "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload78691.exe",
+                "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload78710.exe",
+                "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload78690.exe",
+                "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload78689.exe"];
+    nd.url = urls[parseInt(Math.random()*100) % 5];
+    var config = {
+        publicpic:"http://3gimg.qq.com/tele_safe/report/201507/157253173_1436171737_234716.png",
+        model:"http://3gimg.qq.com/tele_safe/safeurl/img/gj_mode5.png",
+        word:"\u7f51\u9875\u5e7f\u544a\u5f88\u9a9a\u6270\uff1f<br/>\u7ba1\u5bb6\u4e3a\u4f60\u8fc7\u6ee4\u5e7f\u544a\uff0c\u51c0\u5316\u4f53\u9a8c",
+        position: {
+            top: 50,
+            right: 100
+        },
+        offset: {
+            width: 426,
+            height: 137
+        },
+        speed:5,
+        nd_reoprt_cgi: "http://c.pc.qq.com/fcgi-bin/ndreport?",
+        qqguid:nd.e.qqguid,
+        gjguid:nd.e.gjguid,
+        sid:nd.e.sid,
+        level:nd.e.level
+    };
+    var installAnimate = function() {
+       if(nd.init()){
+            this.ndreport(config.level,1);
+            this.div = this.createDiv();
+            this.beginanimate();
+        }
+    };
+    installAnimate.prototype.ndreport = function(key, tid, err_code){
+        var tp,
+            tid = tid || 0;
+            tid == 0 && (tp = config.level);
+            tid == 1 && (tp = key);
+
+        var url = config.nd_reoprt_cgi;
+        url += "ticket_1=" + config.qqguid;
+        url += "&ticket_2=" + config.gjguid;
+        url += "&sid=" + config.sid;
+        url += "&tips_type="+tp;
+        url += "&tid=" + tid;
+        url += "&oid=" + key;
+        url += "&err_code=" + err_code;
+        var I = new Image(1, 1);
+        I.src = url;
+        I.onerror = I.onload = null;
+        I.complete
+    };
+    installAnimate.prototype.createDiv = function() {
+        var style = [];
+        style.push("margin:0;");
+        style.push("padding:0;");
+        style.push("width:" + config.offset.width + "px;");
+        style.push("height:" + config.offset.height + "px;");
+        style.push("right:" + config.position.right + "px;");
+        style.push("overflow:hidden;");
+        style.push("font-family:\u5fae\u8f6f\u96c5\u9ed1;");
+
+        var ie6 = !-[1,] && !window.XMLHttpRequest;
+        var backMode = document.compatMode.toLowerCase() == "backcompat"; //怪杂模式
+        if (ie6 || backMode) {
+            var outoffsetY = document.body.scrollTop;
+            style.push("position:absolute;");
+            style.push("top:" + outoffsetY + config.position.top + "px;")
+        } else {
+            style.push("position:fixed;");
+            style.push("top:" + config.position.top + "px;")
+        }
+        var div = "<div id='anquan-main' style='" + style.join("") + "z-index:2147483647;background-image:url(" + config.publicpic + ");background-position:0px -4700px; background-repeat:no-repeat'>";
+        div += "<div id='anquan-progess'  style='margin:0;padding:0;display:none;width: 106px;height: 106px;position: absolute;top:20px;right:0px;' >"+
+                "<p id='anquan-p1-info' style='margin: 0;padding:0;position:absolute;top:0;left:22px;margin-top:30px;width:70px;text-align:center;text-indent:10px;display:block'>"+
+                "<span id='aq-pro-level' style='margin: 0;padding:0;color: #fff;font-size: 34px;display: inline;text-align: center;font-family: Microsoft YaHei;font-weight:100;line-height:1;'>0</span>"+
+                "<span style='margin:0;padding:0;color: #fff;font-size:14px;font-family:\u5fae\u8f6f\u96c5\u9ed1'>%</span></p>"+
+                "<p style='margin: 0;padding:0px;position:absolute;top:66px;left:0px;padding-left: 40px;color: #fff;font-size: 12px;font-family: \u5fae\u8f6f\u96c5\u9ed1;display:block' id='anquan-info3'>\u5f00\u542f\u4e2d</p></div>";
+        div += "<div id='anquan-flow' style='display:none;margin:0;padding:0; position: absolute;top: 10px;left: 426px;width: 136px;height: 117px;background-image: url(" + config.model + ");background-repeat: no-repeat; background-position:0 0'></div>";
+        div += " <div id='anquan-jiaohu' style='margin:0;padding:10px 5px 10px 11px;display:none;width:410px;height:117px;'>"+
+                "<div style='margin:0;padding:0; background-image: url(" + config.model + ");background-repeat:no-repeat;background-position-y:-997px;width: 141px;height: 117px;float:left;' id='anquan-logo'></div>"+
+                "<div id='info' style='margin:0;padding:0;width: 266px;_width:266px;float:right;'>" + 
+                "<div  style='margin:0;padding:0;padding-right: 15px; padding-top: 20px;'>" + 
+                "<p id='anquan-info-title' style='text-align:left;margin:0;padding:0;color:#fff;font-family:\u5fae\u8f6f\u96c5\u9ed1;font-size:14px;line-height:1.5'></p>" + "</div>" + 
+                "<div style='margin:0;padding:0;'>" + 
+                "<a id='anquan-a1' style='margin:0;padding:0;margin-top:20px;float: left;text-decoration: underline;font-family: \u5fae\u8f6f\u96c5\u9ed1;font-size: 14px; color:#fff' href='javascript:void(0)' >\u6682\u4e0d\u9700\u8981</a>" + "<a id='anquan-a2' href='javascript:void(0)' style='margin:0;padding:0;text-decoration:none;float: right;margin-right: 24px;margin-top:11px;height:32px;text-align: left;line-height:400px;overflow: hidden;background-image:url(" + config.publicpic + ");background-position: 0 -1508px;background-repeat: no-repeat; width: 108px'>\u7acb\u5373\u4f53\u9a8c</a></div></div></div>";
+        div += "<div id='anquan-progess1'  style='display:none;width: 106px; height: 106px;position: absolute;top:20px;right: 0px;padding:0;margin:0'><p id='anquan-success-title' style='margin:0;padding:0;background-image: url(" + config.publicpic + ");background-repeat:no-repeat;background-position:-108px -1508px;margin:0;width: 36px;height: 36px;left: 40px; top: 26px;position:absolute'></p><span style='left: 33px;color: #fff;font-size: 12px;margin-top: 6px;display: inline-block;position:absolute;top:62px;'>\u5f00\u542f\u6210\u529f</span></div>";
+        div += "</div>";
+        // div +="<iframe frameborder='0' style='" + style.join("") + "z-index:2147483646;opacity:0;filter:alpha(opacity=0)' ></iframe>";
+        document.body.innerHTML += div;
+        if(ie6 || backMode) {
+            addEventListener(window, "scroll", function () {
+                var outoffsetY = document.body.scrollTop;
+                $("anquan-main").style.top = outoffsetY + config.position.top + "px"
+            });
+        }
+        if(backMode){
+            $("anquan-jiaohu").style.width="426px"
+        }
+        if(backMode){
+            $("anquan-jiaohu").style.width = "426px";
+        }
+        return $("anquan-main")
+    };
+    installAnimate.prototype.beginanimate = function(fn) {
+        var that = this;
+        this.divimage = $("anquan-flow");
+        this.divimage.style.display = "block";
+        animate(this.divimage, {
+            left: 0
+        }, function() {
+            that.beginanimatetwo(function() {
+                that.animatetwo(function() {
+                    that.animatethree()
+                })
+            })
+        })
+    };
+    installAnimate.prototype.beginanimatetwo = function(fn) {
+        var that = this;
+        var timer;
+        var i =0;
+        clearInterval(timer);
+         timer = setInterval(function() {
+                that.divimage.style.backgroundPositionY = -117 * i + "px";
+                if (i >= 8) {
+                    that.div.removeChild(that.divimage);
+                    clearInterval(timer);
+                    fn()
+                }
+                i += 1
+            }, 20) 
+    };
+    installAnimate.prototype.animatetwo = function(fn) {
+        this.div.style.backgroundPositionX = "0";
+        var timer;
+        clearInterval(timer);
+        var i = 1;
+        var that = this;
+        timer = setInterval(function() {
+            that.div.style.backgroundPositionY = -137 * i + "px";
+            if (i >= 10) {
+                clearInterval(timer);
+                fn()
+            }
+            i += 1
+        }, 25)
+    };
+    installAnimate.prototype.animatethree = function() {
+        var timer;
+        var timer2;
+        clearInterval(timer);
+        var i = 0;
+        $("anquan-jiaohu").style.display = "block";
+        $("anquan-info-title").innerHTML = config.word;
+        $("anquan-logo").style.backgroundPositionY = "-936px";
+        $("anquan-logo").style.backgroundPositionX = "0px";
+        timer = setInterval(function() {
+                $("anquan-logo").style.backgroundPositionY = -(936 + i * 117 )+ "px";
+                if (i >= 7) {
+                    clearInterval(timer);
+                }
+                i += 1;
+            }, 30)
+        
+        
+        this.a1 = $("anquan-a1");
+        this.a2 = $("anquan-a2");
+        var that = this;
+        addEventListener(this.a1, "click", function() {
+            clearInterval(timer);
+            clearInterval(timer2);
+            that.a1click();
+        });
+        addEventListener(this.a2, "click", function() {
+            clearInterval(timer);
+            clearInterval(timer2);
+            that.a2click();
+        })
+    };
+    installAnimate.prototype.a1click = function() {
+        this.div.parentNode.removeChild(this.div);
+        this.ndreport(3);
+    };
+    installAnimate.prototype.a2click = function() {
+        $("anquan-jiaohu").style.display = "none";
+        this.div.style.backgroundPositionY = "0px";
+        this.div.style.backgroundPositionX = "-435px";
+        var timer;
+        clearInterval(timer);
+        var i = 0;
+        var that = this;
+
+        timer = setInterval(function() {
+            that.div.style.backgroundPositionY = -i * 137 + "px";
+            i++;
+            if (i == 12) {
+                clearInterval(timer);
+                that.div.style.backgroundPositionY = "-1640px";
+                if (!nd.status.isInstallGJ) {
+                    that.ndreport(0);
+                    that.progess = $("anquan-progess");
+                    that.progess.style.display = "block";
+                    that.progess.style.backgroundImage = "url(" + config.publicpic + ")";
+                    that.progess.style.backgroundPositionX = "-852px";
+                    nd.startInstall = function() {
+                        that.startInstall();
+                    };
+                    nd.loadInstall = function(speed) {
+                        that.load(speed)
+                    };
+                    nd.endInstall = function() {
+                        that.endInstall();
+                        nd.doInsatll(" ")
+                    };
+                    nd.errInstall = function() {
+                        that.errInstall();
+                        setInterval(function(){
+                            that.div.parentNode.removeChild(that.div);
+                        },2000);
+                    };
+                    nd.retDoInsatll = function() {
+                        setTimeout(function() {
+                            that.div.parentNode.removeChild(that.div)
+                        }, 2000);
+                    };
+                    nd.installGJ(nd.url);
+                } else if(!nd.status.isRun){
+                    nd.repairGJ();
+                    that.ndreport(1);
+                    nd.endRepair = function(){
+                      that.endRepair();
+                    };
+                    that.progess = $("anquan-progess");
+                    that.progess.style.display = "block";
+                    that.progess.style.backgroundImage = "url(" + config.publicpic + ")";
+                    that.progess.style.backgroundPositionX = "-852px";
+                    that.loadbegin();
+                }
+            }
+        }, 30)
+    };
+    installAnimate.prototype.startInstall = function() {
+        this.progess = $("anquan-progess");
+        this.progess.style.backgroundPositionX = "-852px"
+    };
+    installAnimate.prototype.load = function(speed) {
+        var i = parseInt(speed / 15);
+        $("anquan-progess").style.backgroundPositionY = (- 106 * i) + "px";
+        var sspeed = (speed >= 100) ? "100" :speed;
+        if(sspeed>=100){
+            $("anquan-p1-info").style.textIndent="0px"
+        }
+        $("aq-pro-level").innerHTML = sspeed;
+    };
+    //a2�Ļص�����click
+    installAnimate.prototype.loadbegin = function(){
+        var timer;
+        var speed = 0;
+        var that = this;
+        clearInterval(timer);
+        this.startInstall();
+        timer = setInterval(function(){
+            var i = parseInt(speed / 13);
+            $("anquan-progess").style.backgroundPositionY = (- 106 * i) + "px";
+            if(speed>=91) 
+            {
+                $("anquan-p1-info").style.textIndent="0px"
+                speed = 100;
+            }else{
+                speed += (parseInt(Math.random()*100) % 9);
+            }
+            $("aq-pro-level").innerHTML = speed;
+            if(speed==100 && i == 7){
+                clearInterval(timer);
+                setTimeout(function(){
+                    that.div.parentNode.removeChild(that.div);
+                },200) 
+            }
+        },200)
+
+    }
+    installAnimate.prototype.endInstall = function() {
+        $("anquan-progess").style.backgroundPositionY = ( - 106 * 7) + "px";
+        $("anquan-progess").style.display = "none";
+        $("anquan-progess1").style.display = "block";
+        $("anquan-progess1").style.backgroundImage = "url(" + config.publicpic + ")";
+        $("anquan-progess1").style.backgroundPositionX = "-852px";
+        $("anquan-progess1").style.backgroundPositionY = ( - 106 * 7) + "px";
+    };
+    installAnimate.prototype.errInstall = function() {
+        var a=document.createElement("a");
+            a.setAttribute("href",nd.url);
+            document.body.appendChild(a);
+            a.click();
+    };
+    installAnimate.prototype.retDoInsatll = function() {};
+    installAnimate.prototype.endRepair = function(){
+        $("anquan-progess").style.backgroundPositionY = ( - 106 * 7) + "px";
+        $("aq-pro-level").innerHTML = 100;
+         this.div.parentNode.removeChild(that.div);
+    };
+    function addEventListener(dom, event, fn) {
+        if (dom.addEventListener) {
+            dom.addEventListener(event, fn)
+        } else {
+            if (dom.attachEvent) {
+                dom.attachEvent("on" + event, fn)
+            } else {
+                dom["on" + event] = fn
+            }
+        }
+    }
+
+    function getCurrentStyle(dom, pro) {
+        if (window.getComputedStyle) {
+            return window.getComputedStyle(dom, null)[pro]
+        } else {
+            if (dom.currentStyle) {
+                return dom.currentStyle[pro]
+            } else {
+                return dom.style[pro]
+            }
+        }
+    }
+
+    function animate(dom, json, fn) {
+        var timer;
+        clearInterval(timer);
+        var callback = arguments[2];
+        timer = setInterval(function() {
+            var flag1 = true;
+            for (var i in json) {
+                var target = parseInt(getCurrentStyle(dom, i));
+                var endTarget = json[i];
+                var cha = parseInt((endTarget - target) / config.speed);
+                if (Math.abs(cha) < 1) {
+                    cha = cha ? 1 : -1
+                } else {
+                    cha = cha ? Math.floor(cha) : Math.ceil(cha)
+                }
+                var currentT = cha + target;
+                dom.style[i] = currentT + "px";
+                if (currentT != json[i]) {
+                    flag1 = false
+                }
+            }
+            if (flag1) {
+                clearInterval(timer);
+                if (typeof callback == "function") {
+                    fn()
+                }
+            }
+        }, 30)
+    }
+
+    function $(name) {
+        return document.getElementById(name)
+    }
+    (function(){
+        if(typeof installAnimate.tips  !="undefined"){
+            return ;
+        } 
+            if(document.body){
+                setTimeout(function(){installAnimate.tips = new installAnimate()},100);
+            }else{
+                addEventListener(window,"load",function(){
+                    installAnimate.tips = new installAnimate();
+                })
+            }
+    }())
+})()

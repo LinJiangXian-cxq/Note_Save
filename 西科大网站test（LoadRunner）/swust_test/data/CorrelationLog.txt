@@ -1,0 +1,183 @@
+Debug Message:
+	Correlation engine instance created; using configuration Default
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	TaskID=128  URL=http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_css/_system/system_editor.css
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/extends/libs/jquery.sudy.js
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/images/logo_bg.jpg
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/images/main-t-161108_07.jpg
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/images/top_menu_1_03.jpg
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/css/img/menu-icon-arrow.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/css/img/menu-icon-arrow-white.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/images/list_1_38.jpg
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/images/footer_bg.jpg
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/images/aq_03.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/images/wx_logo_05.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/_visitcountdisplay?articleIds=&siteId=2&funType=0
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/_visitcountdisplay?siteId=2&type=1&dispMode=5&statMode=1&showDate=1
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/_visitcountdisplay?articleIds=&siteId=2&funType=1
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/customPortletMode/00/c3/195/css/opacity.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/customPortletMode/00/c3/195/images/next.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/customPortletMode/00/c3/195/images/prev.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to /_upload/tpl/00/10/16/template16/css/img/menu-switch-arrow.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/
+
+Debug Message:
+	TaskID=220  URL=http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/_visitcountdisplay?articleIds=&siteId=2&funType=1
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/_visitcountdisplay?articleIds=&siteId=2&funType=0
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to ../_upload/tpl/00/10/16/template16/css/img/menu-dot.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to ../_upload/tpl/00/10/16/template16/css/img/li.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to ../_js/_portletPlugs/simpleNews/css/posSplit.gif
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to ../_upload/tpl/00/10/16/template16/css/img/back-arrow.png
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/89/list.htm
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/47/list.htm
+
+Debug Message:
+	TaskID=251  URL=http://www2.swust.edu.cn/89/list.htm
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/_visitcountdisplay?articleIds=&siteId=2&funType=1
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/89/list.htm
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/_visitcountdisplay?articleIds=&siteId=2&funType=0
+
+Debug Message:
+	Rules could not be applied to http://www2.swust.edu.cn/89/list.htm
+

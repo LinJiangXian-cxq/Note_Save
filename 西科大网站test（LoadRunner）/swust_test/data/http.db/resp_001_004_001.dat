@@ -1,0 +1,7 @@
+.siteCounter4 span{padding:3px 6px;margin:2px;background-color: #fd3127;color: #FFFFFF;border-radius: 3px;}
+.siteCounter5 span{padding:2px 5px;margin:2px;border: 1px solid #ccc;border-radius: 3px;color: #666666;}
+.siteCounter6 span{padding:2px 5px;margin:2px;border: 1px solid #ccc;border-radius: 12px;color: #666666;}
+.siteCounter7 span{padding:2px 5px;margin:2px;border: 1px solid #444;border-radius: 12px;color: #FFFFFF;background-color: #444444;}
+.siteCounter8 span{margin:1px;border-radius: 3px;color: #FFFFFF;background-image: url(image/bg3.png);background-repeat: no-repeat;background-position: center bottom;padding:4px 7px;}
+.siteCounter9 span{padding:4px 7px;margin:1px;color: #333333;background-image: url(image/bg.png);background-repeat: no-repeat;background-position: center bottom;}
+.siteCounter10 span{padding:4px 7px;margin:1px;color: #FFFFFF;background-image: url(image/bg2.png);background-repeat: no-repeat;background-position: center bottom;}

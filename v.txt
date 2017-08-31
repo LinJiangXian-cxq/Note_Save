@@ -1,0 +1,61 @@
+时间复杂度是指执行算法所需要的计算工作量；而空间复杂度是指执行这个算法所需要的内存空间。
+冒泡： 两两比较交换        O(n^2)   稳定
+选择： 后面最小数交换     O(n^2)   
+插入： 与前有序的数比较（下标）  O(n^2)   稳定       大部分有序使用
+快速： 左右大小分割  递归   O（nlog2 n）                            大量随机时使用
+shell： 按某增量d分成若干子序列，子序列全部直接插入，再按增量d/2分然后插入，直到d=1插入后完成排序 	O（nlog2 n）  
+归并：  分成有序小序列   再合并到新的序列    O（nlog2 n）                                                      稳定
+堆：     二叉堆   排序码组成完全二叉树然后不断二分直到第一个排序码，第一节点与最后结点交换   kn-1 kn-2——  所需空间少  适合大数据
+	从小到大：大根堆     从大到小：小根堆	O（nlog2 n）  
+基数（桶）  0-9个桶，一次从低位排序，一位一趟                             稳定
+查找排序：	1.水壶问题：随机一红瓶分别找出>=<的蓝瓶，再找出><的红瓶集合；递归
+		2.找最大与最小值问题 
+		3.测瓶子强度问题：k<log2 n 时，采用分治策略分成 n^1/k个组，从低往高测。  如k=1分成n各组O（n）
+		4.大数据排序：log2 n 排序（最好是堆排序 占内存空间少 适合大数据 不需要递归 不需要数据）基数排序 
+		5.种树问题：能种n/4棵，种最多有两种（第一位置种和第一个位置不种）情况，每种情况拿出来排序，找出最大的m个数
+		6.
+外连接：（+）在左边为右连接，以右表的为主；反之为左连接，以左表的为主。
+分组统计不能查询 分组条件以外的的字段
+insert into 表名 （字段名，---） values （，，，，）      update 表名 set ----- where------------
+delete from 表名 where-------                                      drop table 表名
+create table 表名（pid varchar2（10）not null，birthday date nut null,“CONSTRAINT person_pid_pk PRIMARY KEY(pid)”）；
+constraint person_book_pid_fk foreign key(pid) references person(pid)
+alter table person add constraint person_pid_pk primary key(pid);
+事务特性ACID：原子性    一致性    隔离性     持久性
+数据库对象：表、视图（虚拟数据集合）、图表（表间关系）、规则、缺省值、存储过程（sql打包集合）、触发器（触发事务处理）、用户
+
+等价类划分 边界值    判定表（或的情况  存在因果关系的情况   规则只有0、1两种情况，n个规则 2^n个条件桩）
+v w模型      v：到最后才验收如对需求分析错误到最后才会被发现        w：并行，有对文档的测试
+
+POST的安全性要比GET的安全性高，比如：通过GET提交数据，用户名和密码将明文出现在URL上;Get是向服务器发索取数据的一种请求，而Post是向服务器提交数据的一种请求，在FORM（表单）中，Method默认为"GET"，实质上，GET和POST只是发送机制不同，并不是一个取一个发！    （1）get提交的在url中 post提交的在body中  （2） get提交有大小限制 post没有 （3） get提交会有安全问题
+数据驱动测试：	webdriver.Firefox().get(url)
+		切片excl，self.wd.find_element_by_id('username').send_keys(l11[zzz][0])
+		self.wd.find_element_by_css_selector('img.ke-common-icon.ke-icon-source').click()
+self.wd.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[2]/div/div[2]/table[2]/tbody/tr[1]/td[5]/label[1]').click()
+
+接口测试：http.client.HTTPConnection(url)
+	request（'GET',url)取出请求到的头部的cookie    再把的到的 cookie来构建头部   后request('Post',url,param,header)
+	接口登录后：照样用cookie构建头部， 后通过数据驱动取得测试用例构成param  最后提交request('Post',url,param,header)
+
+qtp： 录制 --参数化- -检查点- -迭代         关键字驱动测试     数据驱动测试   描述性编程
+loadrunner： 思考时间--事务点 --集合点--参数化--关联--检查点--     迭代并发（m*n）     测试网站pv     性能指标（TPS、并发数、响应时间、吞吐量——————）    web_reg_save_param("","LB=","RB=","Savelen=","Save Off Set","Last")
+
+在java中，每次程序运行至少启动2个线程。一个是main线程，一个是垃圾收集线程。
+线程状态：新建状态、就绪状态、运行状态、阻塞状态、死亡状态
+	新建--就绪：.start（）   就绪--运行（cpu给予资源）  运行--就绪：.yield（）  运行--阻塞（等待阻塞、同步阻塞synchronized、
+	其他阻塞sleep/join开始） 阻塞--就绪：sleep/join结束         
+最高优先级MAX_PRIORITY  （MIN   NORM）（）睡眠 sleep（）    等待wait（）   唤醒notify（）  让步yield（）   加入join（）
+sleep()睡眠时，保持对象锁，仍然占有该锁；而wait()睡眠时，释放对象锁。  
+异常处理：JVM的异常、程序员编写或API使用异常                      泛型：参数化类型<>  如：排序整型数组通过泛型可排序double char
+java源文件--通过java编译器--java字节码文件--通过java解释器--送到JVM运行--se/ee/me
+封装、继承、多态                           重载：多个函数相同函数名不同参数类型、个数       覆盖（重写）：相同函数名，不同方法，父子类中
+抽象类：不能实例化，它的子类能。
+多态：一个引用类型的多种状态，即父类可以调用子类的方法
+	1.不论是我方坦克子弹还是敌方子弹，都在自己的类里定义集合；我方子弹添加用J的监听，敌方坦克子弹用线程来添加；子弹类里有		移动线程，只要添加了子弹就会启动。
+	2.我方移动通过监听；敌方移动通过Random
+	3.
+
+
+电信： 	AMB：账户余额管理    OCS：在线计费系统   OFCS：离线计费系统   BSS：销售和客服  OSS：服务开通保护
+	crm系统：客户关系管理系统
+	客户表：PARTY    PARTY_PROFILE   PARTY_IDENTIFY          员工表：STAFF_BASEINFO          订单表：OFFER   ACCOUT

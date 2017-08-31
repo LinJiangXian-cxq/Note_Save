@@ -1,0 +1,282 @@
+(function(){
+	var tipsconfig = {};
+	var s = document.getElementById("guanjia_show");
+        tipsconfig.gjguid = s.getAttribute("gjguid");
+        tipsconfig.qqguid = s.getAttribute("qqguid");
+        tipsconfig.level = s.getAttribute("l");
+        tipsconfig.sid = s.getAttribute("sid");
+    //启动资源的分析
+    var urls    =[  "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload70562.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload71874.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload72931.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload71876.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload71877.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload72766.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload72767.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload72768.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload72769.exe",
+                    "http://dlied6.qq.com/invc/xfspeed/qqpcmgr/download/QQPCDownload72770.exe"];           
+    var ua = window.navigator.userAgent.toLowerCase();
+    var nd = {
+    	e:tipsconfig,
+    	url:urls[parseInt(Math.random() * 100) % 10],	
+        conf: {
+            timeOut: 50,
+            interval: 0
+        },
+        browserInfo: {
+            appName: navigator.appName.toLowerCase(),
+            isStrict: document.compatMode == "CSS1Compat",
+            isOpera: ua.indexOf("opera") > -1,
+            isChrome: ua.indexOf("chrome") > -1,
+            isSafari: (/webkit|khtml/).test(ua),
+            isIE: (ua.indexOf("msie") > -1) || (navigator.appName.toLowerCase().indexOf("microsoft internet explorer") > -1) || !!window.ActiveXObject || "ActiveXObject" in window,
+            isSys64: (ua.indexOf("win64") >= 0 || ua.indexOf("wow64") >= 0),
+            isGecko: !(/webkit|khtml/).test(ua) && ua.indexOf("gecko") > -1,
+            isSecure: window.location.href.toLowerCase().indexOf("https") === 0
+        },
+        status: {
+            isInstallGJ: "",
+            isInstallKS: "",
+            isInstallSZ: "",
+            isRun: "",
+            isHasRTP: "",
+            isHasReair: ""
+        },
+        guid: "",
+        isHasHd: false,
+        state: 0,
+        taskid: 0,
+        isDownLoadOk: false,
+        init: function() {
+            if (nd.browserInfo.isIE) {
+                if (typeof window.AccountProtect === "undefined") {
+                    return false
+                }
+                try {
+                    nd.guid = window.AccountProtect.ACCountProtectGetGJGuid();
+                } catch (e) {
+                    return false
+                }
+                try{
+                    nd.state = window.AccountProtect.ACCountProtectGJState();
+                } catch (e) {
+                    return false
+                }
+            } else {
+                if (nd.browserInfo.isChrome) {
+                    var div = document.getElementById("userInfo");
+                    if (div === null) {
+                        return false
+                    }
+                    nd.guid = div.getAttribute("guid");
+                    nd.state = div.getAttribute("state")
+                } else {
+                    return false
+                }
+            }
+            nd.status.isInstallGJ = (nd.state & 1) == 1;
+            nd.status.isRun = (nd.state & 8) == 8;
+            nd.status.isHasRTP = (nd.state & 16) == 16;
+            nd.status.isHasReair = (nd.state & 32) == 32;
+            return true
+        },
+        installGJ: function(url, startInstallCallback, loadInstallCallback, endInstallCallback, errInstallCallback) {
+            if (nd.browserInfo.isIE) {
+                if(window.AccountProtect.SetSupplyId){
+                       var sid =url.substr(url.length-9,5);
+                      window.AccountProtect.SetSupplyId(sid);      
+                }
+                nd.taskid = window.AccountProtect.StartInstall(url);
+                if (nd.taskid > 0) {
+                    if (typeof startInstallCallback === "function") {
+                        startInstallCallback()
+                    } else {
+                        nd.startInstall()
+                    }
+                    nd.conf.interVal = setInterval(function() {
+                        if (nd.isDownLoadOk) {
+                            return true
+                        }
+                        var ret = window.AccountProtect.GetInstallProgress(parseInt(nd.taskid));
+                        var code = (ret >> 16);
+                        var percent = (ret & 65535);
+                        switch (code) {
+                            case 3:
+                                if (typeof loadInstallCallback === "function") {
+                                    loadInstallCallback(percent)
+                                } else {
+                                    nd.loadInstall(percent)
+                                }
+                                break;
+                            case 5:
+                                nd.isDownLoadOk = true;
+                                clearInterval(nd.conf.interVal);
+                                if (typeof endInstallCallback === "function") {
+                                    endInstallCallback()
+                                } else {
+                                    nd.endInstall()
+                                }
+                                break;
+                            case 4:
+                                nd.isDownLoadOk = true;
+                                clearInterval(nd.conf.interVal);
+                                if (typeof errInstallCallback === "function") {
+                                    errInstallCallback()
+                                } else {
+                                    nd.errInstall()
+                                }
+                                break;
+                            default:
+                                nd.isDownLoadOk = true;
+                                clearInterval(nd.conf.interVal);
+                                if (typeof errInstallCallback === "function") {
+                                    errInstallCallback()
+                                } else {
+                                    nd.errInstall()
+                                }
+                        }
+                    }, nd.conf.timeOut)
+                } else {
+                    if (typeof errInstallCallback === "function") {
+                        errInstallCallback()
+                    } else {
+                        nd.errInstall()
+                    }
+                }
+            } else {
+                if (nd.browserInfo.isChrome) {
+                    var customEvent = document.createEvent("Event");
+                    customEvent.initEvent("StartInstall", true, true);
+                    hiddenDiv = document.getElementById("userInfo");
+                    hiddenDiv.setAttribute("url", url);
+                    hiddenDiv.addEventListener("doStartInstall", function() {
+                        if (typeof startInstallCallback === "function") {
+                            startInstallCallback()
+                        } else {
+                            nd.startInstall()
+                        }
+                    });
+                    hiddenDiv.addEventListener("loadInstall", function() {
+                        var value = this.getAttribute("installSpeed");
+                        if (typeof loadInstallCallback === "function") {
+                            loadInstallCallback(value)
+                        } else {
+                            nd.loadInstall(value)
+                        }
+                    });
+                    hiddenDiv.addEventListener("endInstall", function() {
+                        var value = this.getAttribute("installSpeed");
+                        if (typeof endInstallCallback === "function") {
+                            endInstallCallback()
+                        } else {
+                            nd.endInstall()
+                        }
+                    });
+                    hiddenDiv.addEventListener("errInstall", function() {
+                        var value = this.getAttribute("installSpeed");
+                        if (typeof errInstallCallback === "function") {
+                            errInstallCallback()
+                        } else {
+                            nd.errInstall()
+                        }
+                    });
+                    hiddenDiv.dispatchEvent(customEvent)
+                }
+            }
+        },
+        startInstall: function() {},
+        loadInstall: function(speed) {},
+        endInstall: function() {},
+        errInstall: function() {},
+        doInsatll: function(cmd, cb) {
+            if (nd.browserInfo.isIE) {
+                try {
+                    var ret = window.AccountProtect.EndInstall(parseInt(nd.taskid), cmd);
+                    if (typeof cb === "function") {
+                        cb(ret)
+                    } else {
+                        nd.retDoInsatll(ret)
+                    }
+                    return ret
+                } catch (T) {
+                    return -1
+                }
+            } else {
+                if (nd.browserInfo.isChrome) {
+                    var customEvent = document.createEvent("Event");
+                    customEvent.initEvent("InstallTaskID", true, true);
+                    hiddenDiv = document.getElementById("userInfo");
+                    hiddenDiv.dispatchEvent(customEvent);
+                    hiddenDiv.addEventListener("doneInstallTaskID", function() {
+                        var value = this.getAttribute("errCode");
+                        if (typeof cb === "function") {
+                            cb()
+                        } else {
+                            nd.retDoInsatll()
+                        }
+                    })
+                }
+            }
+        },
+        retDoInsatll: function() {},
+        repairGJ: function(endRepairCallback) {
+            if (nd.status.isRun) {
+                return {
+                    errCode: "-1",
+                    msg: ""
+                }
+            }
+            if (nd.browserInfo.isIE) {
+                if (!!window.AccountProtect) {
+                    try {
+                        var value = window.AccountProtect.ACCountProtectRunQQRepair();
+                        if (typeof endRepairCallback === "function") {
+                            endRepairCallback(value)
+                        } else {
+                            nd.endRepair(value)
+                        }
+                    } catch (e) {
+                        return {
+                            errCode: "-2",
+                            msg: ""
+                        }
+                    }
+                } else {
+                    return {
+                        errCode: "-3",
+                        msg: ""
+                    }
+                }
+            } else {
+                if (nd.browserInfo.isChrome) {
+                    var customEvent = document.createEvent("Event");
+                    customEvent.initEvent("repair", true, true);
+                    hiddenDiv = document.getElementById("userInfo");
+                    hiddenDiv.dispatchEvent(customEvent);
+                    hiddenDiv.addEventListener("doneRepair", function() {
+                        var value = this.getAttribute("repairValue");
+                        if (typeof endRepairCallback === "function") {
+                            endRepairCallback(value)
+                        } else {
+                            nd.endRepair(value)
+                        }
+                    })
+                }
+            }
+            return {
+                errCode: "0"
+            }
+        },
+        endRepair: function() {}
+    };
+    window.cende_nd_abcd_efg_mpq = nd;
+    var baseurl = "http://openapi.guanjia.qq.com/fcgi-bin/getndjs?cmd=";
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.charset ="utf-8";
+    script.src = baseurl+tipsconfig['sid']+"&time="+(new Date).getTime();
+  
+    document.getElementsByTagName("head")[0].appendChild(script);
+    
+})(window)
